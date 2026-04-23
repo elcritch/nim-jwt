@@ -18,7 +18,7 @@ proc checkKeysExists*(node: JsonNode, keys: varargs[string]) =
       raise newException(KeyError, "$# is not present." % key)
 
 proc encodeUrlSafe*(s: openarray[byte]): string =
-  result = base64.encode(s, newLine="")
+  result = base64.encode(s)
   while result.endsWith("="):
     result.setLen(result.len - 1)
   result = result.replace('+', '-').replace('/', '_')
